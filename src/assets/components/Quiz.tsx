@@ -1,24 +1,24 @@
-import { useState } from "react"
+import { useCallback, useEffect, useState } from "react"
 import questions from "../../questions.js"
+import Answer from "./Answer.js";
 
 export default function Quiz() {
     const [answers, setAnswers] = useState([])
     let currentIndex = answers.length ;
     console.log(questions)
-    function onHandleAnswer(it) {
-        setAnswers(prev => [...prev, it])
-    }
+
+    const handleAnswer = useCallback(function handleAnswer(it) {
+            setAnswers(prev => [...prev, it])
+    })
+    
     if (currentIndex == questions.length) {
-        return <h1>End quiz</h1>
+        return <h1>
+            {answers.map(it => <p key={it}>{it}</p>)}
+        </h1>
     }
     return <div id="question-overview question">
+        {currentIndex}
         <h2>{questions[currentIndex].text}</h2>
-        <div id="answers">
-            {questions[currentIndex].answers.map((it, index) => {
-                return <section className="answer">
-                    <button onClick={() => onHandleAnswer(it)} key={it}>{it}</button>
-                </section>
-            })}
-        </div>
+        <Answer key={questions[currentIndex].text} question={questions[currentIndex]} onHandleAnswer={handleAnswer} />
     </div>
 }
