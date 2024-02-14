@@ -22,7 +22,7 @@ header {
 
 header h1 {
   font-weight: bold;
-  font-size: 2.5rem;
+  font-size: 3.5rem;
   letter-spacing: 0.6rem;
   margin: 0;
   text-transform: uppercase;
@@ -177,4 +177,9 @@ label {
   font-weight: bold;
   display: block;
   margin: 20px 0;
+}
+
+.flex-center {
+  display: flex;
+  justify-content: space-around;
 }

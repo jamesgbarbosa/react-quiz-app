@@ -9,18 +9,18 @@ export default function Quiz() {
 
     const handleAnswer = useCallback(function handleAnswer(it) {
         setAnswers(prev => [...prev, it])
-    })
+    }, [])
 
     if (currentIndex == questions.length) {
         return <h1>
-            {answers.map((it, index) => <p key={index}>{it}</p>)}
+            {answers.map((it, index) => <p key={index}>{it ?? "No Answer"}</p>)}
         </h1>
     } else {
         shuffledQuestions = [...questions[currentIndex].answers].sort(() => .5 - Math.random());
     }
 
     return <div id="question-overview question">
-        <div>
+        <div className="flex-center">
             <h2>{questions[currentIndex].text}</h2>
         </div>
         <Answer shuffledQuestions={shuffledQuestions} currentIndex={currentIndex} key={questions[currentIndex].text} onHandleAnswer={handleAnswer} />
