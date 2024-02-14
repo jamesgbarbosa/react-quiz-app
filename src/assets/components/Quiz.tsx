@@ -5,7 +5,7 @@ import Answer from "./Answer.js";
 export default function Quiz() {
     const [answers, setAnswers] = useState([])
     let currentIndex = answers.length;
-    let shuffledQuestions = [...questions[currentIndex].answers].sort(() => .5 - Math.random());
+    let shuffledQuestions = [];
 
     const handleAnswer = useCallback(function handleAnswer(it) {
         setAnswers(prev => [...prev, it])
@@ -15,6 +15,8 @@ export default function Quiz() {
         return <h1>
             {answers.map((it, index) => <p key={index}>{it}</p>)}
         </h1>
+    } else {
+        shuffledQuestions = [...questions[currentIndex].answers].sort(() => .5 - Math.random());
     }
 
     return <div id="question-overview question">
