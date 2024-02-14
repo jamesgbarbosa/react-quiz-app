@@ -13,9 +13,10 @@ export default function Quiz() {
     
     if (currentIndex == questions.length) {
         return <h1>
-            {answers.map(it => <p key={it}>{it}</p>)}
+            {answers.map((it, index) => <p key={index}>{it}</p>)}
         </h1>
     }
+    console.log("CURRENT INDEX", currentIndex)
     return <div id="question-overview question">
         {currentIndex}
         <h2>{questions[currentIndex].text}</h2>

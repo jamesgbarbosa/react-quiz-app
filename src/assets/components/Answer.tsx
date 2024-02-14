@@ -1,16 +1,17 @@
 import { useEffect, useState } from "react";
 import questions from "../../questions.js"
 
-const TIMER = 2000;
+const TIMER = 15000;
 
 export default function Answer({ onHandleAnswer, question }) {
     const [timeLeft, setTimeleft] = useState(TIMER)
-
+    const [selectedAnswer, setSelectedAnswer] = useState(null)
+    const [timer, setTimer] = useState(TIMER)
 
     useEffect(() => {
         let questionTimeout = setTimeout(() => {
             
-        }, TIMER)
+        }, timer)
 
         return () => { clearTimeout(questionTimeout) }
     }, [onHandleAnswer])
@@ -20,19 +21,34 @@ export default function Answer({ onHandleAnswer, question }) {
             setTimeleft(prev => prev - 10)
 
             if (timeLeft <= 0) {
-                onHandleAnswer(null)
+                if (selectedAnswer) {
+                    onHandleAnswer(selectedAnswer)
+                } else {
+                    onHandleAnswer(null)
+                }
             }
         }, 10)
 
         return () => { clearInterval(interval) }
     })
 
+    function onSelectAnswer(it) {
+        setTimer(3000)
+        setSelectedAnswer(it);
+        setTimeleft(prev => 3000)
+    }
+    // console.log("TIMER", TIMER)
+
     return <div id="answers">
         {timeLeft}
-        <progress max={TIMER} value={timeLeft}></progress>
+        <div className="flex-center">
+            <progress className={`${selectedAnswer ? 'answered-progress' : 'default'}`} max={timer} value={timeLeft}>
+                {timeLeft}
+            </progress>
+        </div>
         {question.answers.map((it, index) => {
             return <section key={it} className="answer">
-                <button onClick={() => onHandleAnswer(it)} key={it}>{it}</button>
+                <button className={it == selectedAnswer ? 'selected' : ''} onClick={() => selectedAnswer ? null : onSelectAnswer(it)} key={it}>{it}</button>
             </section>
         })}
     </div>
