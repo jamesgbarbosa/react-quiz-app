@@ -1,10 +1,11 @@
-import { useCallback, useEffect, useState } from "react"
+import { useCallback, useState } from "react"
 import questions from "../../questions.js"
 import Answer from "./Answer.js";
 
 export default function Quiz() {
     const [answers, setAnswers] = useState([])
     let currentIndex = answers.length;
+    let shuffledQuestions = [...questions[currentIndex].answers].sort(() => .5 - Math.random());
 
     const handleAnswer = useCallback(function handleAnswer(it) {
         setAnswers(prev => [...prev, it])
@@ -20,6 +21,6 @@ export default function Quiz() {
         <div>
             <h2>{questions[currentIndex].text}</h2>
         </div>
-        <Answer randomizedQuestions={[...questions[currentIndex].answers].sort(() => .5 - Math.random())} currentIndex={currentIndex} key={questions[currentIndex].text} onHandleAnswer={handleAnswer} />
+        <Answer shuffledQuestions={shuffledQuestions} currentIndex={currentIndex} key={questions[currentIndex].text} onHandleAnswer={handleAnswer} />
     </div>
 }

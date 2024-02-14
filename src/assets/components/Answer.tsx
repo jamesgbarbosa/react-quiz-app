@@ -3,7 +3,7 @@ import questions from "../../questions.js"
 
 const TIMER = 15000;
 
-export default function Answer({ onHandleAnswer, currentIndex, randomizedQuestions }) {
+export default function Answer({ onHandleAnswer, currentIndex, shuffledQuestions }) {
     const [timeLeft, setTimeleft] = useState(TIMER)
     const [selectedAnswer, setSelectedAnswer] = useState({ answer: null, state: '' })
     const [timer, setTimer] = useState(TIMER)
@@ -17,7 +17,7 @@ export default function Answer({ onHandleAnswer, currentIndex, randomizedQuestio
 
     useEffect(() => {
         let interval = setInterval(() => {
-            setTimeleft(prev => prev - 80)
+            setTimeleft(prev => prev - 50)
             if (timeLeft <= 0) {
                 if (selectedAnswer && selectedAnswer.answer) {
                     onHandleAnswer(selectedAnswer.answer)
@@ -37,7 +37,7 @@ export default function Answer({ onHandleAnswer, currentIndex, randomizedQuestio
                 }
             }
 
-        }, 80)
+        }, 50)
         return () => { clearInterval(interval) }
     })
 
@@ -57,7 +57,7 @@ export default function Answer({ onHandleAnswer, currentIndex, randomizedQuestio
                 {timeLeft}
             </progress>
         </div>
-        {randomizedQuestions.map((it) => {
+        {shuffledQuestions.map((it) => {
             return <section key={it} className="answer">
                 <button className={it == selectedAnswer.answer ? selectedAnswer.state : ''} onClick={() => selectedAnswer.state ? null : onSelectAnswer(it)} key={it}>{it}</button>
             </section>
