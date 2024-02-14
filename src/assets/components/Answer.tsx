@@ -16,7 +16,7 @@ export default function Answer({ onHandleAnswer, currentIndex, shuffledQuestions
                     state: 'selected'
                 }
             });
-            if (questions[currentIndex].answers[0] == selectedAnswer.answer) {
+            if (questions[currentIndex].answers[0] == it) {
                 setSelectedAnswer(prev => ({ ...prev, state: "correct" }))
             } else {
                 setSelectedAnswer(prev => ({ ...prev, state: "wrong" }))
@@ -24,8 +24,7 @@ export default function Answer({ onHandleAnswer, currentIndex, shuffledQuestions
     }
     
     function handleTimeout() {
-        console.log(selectedAnswer)
-        onHandleAnswer(selectedAnswer.answer)
+        onHandleAnswer(selectedAnswer)
     }
 
     return <div id="answers">
