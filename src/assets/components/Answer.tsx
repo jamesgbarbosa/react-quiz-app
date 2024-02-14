@@ -29,7 +29,6 @@ export default function Answer({ onHandleAnswer, currentIndex, shuffledQuestions
             if (selectedAnswer?.answer && selectedAnswer?.state) {
                 if (timeLeft == 2000) {
                     if (questions[currentIndex].answers[0] == selectedAnswer.answer) {
-                        debugger;
                         setSelectedAnswer(prev => ({ ...prev, state: "correct" }))
                     } else {
                         setSelectedAnswer(prev => ({ ...prev, state: "wrong" }))
