@@ -94,3 +94,71 @@ header h1 {
   background: #f5a76c;
   color: #2c203d;
 }
+
+/* Progress Styling */
+progress[value].answered-progress {
+  --w: 200px;
+  /* the width*/
+  --color:
+    linear-gradient(#fff8, #fff0),
+    repeating-linear-gradient(135deg, #0003 0 10px, #0000 0 20px),
+    green;
+  --background: lightgrey;
+  /* the background color */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border: none;
+  width: var(--w);
+  margin: 0 10px;
+  border-radius: 10em;
+  background: var(--background);
+}
+
+progress[value].default {
+  --w: 200px;
+  /* the width*/
+  --color:
+    /* the progress color */
+    linear-gradient(#fff8, #fff0),
+    repeating-linear-gradient(135deg, #0003 0 10px, #0000 0 20px),
+    /* if < 30% "red" */
+    linear-gradient(red 0 0) 0 /calc(var(--w)*.3 - 100%) 1px,
+    /* if < 60% "orange" */
+    linear-gradient(orange 0 0) 0 /calc(var(--w)*.6 - 100%) 1px,
+    /* else "green" */
+    green;
+  --background: lightgrey;
+  /* the background color */
+
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border: none;
+  width: var(--w);
+  margin: 0 10px;
+  border-radius: 10em;
+  background: var(--background);
+}
+
+progress[value]::-webkit-progress-bar {
+  border-radius: 10em;
+  background: var(--background);
+}
+
+progress[value]::-webkit-progress-value {
+  border-radius: 10em;
+  background: var(--color);
+}
+
+progress[value]::-moz-progress-bar {
+  border-radius: 10em;
+  background: var(--color);
+}
+
+label {
+  font-size: 20px;
+  font-weight: bold;
+  display: block;
+  margin: 20px 0;
+}
