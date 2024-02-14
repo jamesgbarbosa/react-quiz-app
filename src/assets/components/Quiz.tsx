@@ -1,6 +1,7 @@
 import { useCallback, useState } from "react"
 import questions from "../../questions.js"
 import Answer from "./Answer.js";
+import Summary from "./Summary.js";
 
 export default function Quiz() {
     const [answers, setAnswers] = useState([])
@@ -12,9 +13,7 @@ export default function Quiz() {
     }, [])
 
     if (currentIndex == questions.length) {
-        return <h1>
-            {answers.map((it, index) => <p key={index}>{it ?? "No Answer"}</p>)}
-        </h1>
+        return <Summary answers={answers} />
     } else {
         shuffledQuestions = [...questions[currentIndex].answers].sort(() => .5 - Math.random());
     }
