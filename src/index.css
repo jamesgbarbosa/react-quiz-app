@@ -95,6 +95,22 @@ header h1 {
   color: #2c203d;
 }
 
+.answer button.selected {
+  background: #f5a76c;
+  color: #2c203d;
+}
+
+
+.answer button.correct {
+  background: #5af59d;
+  color: #2c203d;
+}
+
+.answer button.wrong {
+  background: #f55a98;
+  color: #2c203d;
+}
+
 /* Progress Styling */
 progress[value].answered-progress {
   --w: 200px;
@@ -102,7 +118,7 @@ progress[value].answered-progress {
   --color:
     linear-gradient(#fff8, #fff0),
     repeating-linear-gradient(135deg, #0003 0 10px, #0000 0 20px),
-    green;
+    blue;
   --background: lightgrey;
   /* the background color */
   -webkit-appearance: none;

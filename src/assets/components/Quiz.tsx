@@ -4,22 +4,22 @@ import Answer from "./Answer.js";
 
 export default function Quiz() {
     const [answers, setAnswers] = useState([])
-    let currentIndex = answers.length ;
-    console.log(questions)
+    let currentIndex = answers.length;
 
     const handleAnswer = useCallback(function handleAnswer(it) {
-            setAnswers(prev => [...prev, it])
+        setAnswers(prev => [...prev, it])
     })
-    
+
     if (currentIndex == questions.length) {
         return <h1>
             {answers.map((it, index) => <p key={index}>{it}</p>)}
         </h1>
     }
-    console.log("CURRENT INDEX", currentIndex)
+
     return <div id="question-overview question">
-        {currentIndex}
-        <h2>{questions[currentIndex].text}</h2>
-        <Answer key={questions[currentIndex].text} question={questions[currentIndex]} onHandleAnswer={handleAnswer} />
+        <div>
+            <h2>{questions[currentIndex].text}</h2>
+        </div>
+        <Answer randomizedQuestions={[...questions[currentIndex].answers].sort(() => .5 - Math.random())} currentIndex={currentIndex} key={questions[currentIndex].text} onHandleAnswer={handleAnswer} />
     </div>
 }
