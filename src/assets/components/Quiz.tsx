@@ -1,7 +1,8 @@
 import { useCallback, useState } from "react"
 import questions from "../../questions.js"
-import Answer from "./Answer.js";
+import Answer from "./AnswerOptions.js";
 import Summary from "./Summary.js";
+import Question from "./Question.js";
 
 export default function Quiz() {
     const [answers, setAnswers] = useState([])
@@ -19,9 +20,7 @@ export default function Quiz() {
     }
 
     return <div id="question-overview question">
-        <div className="flex-center">
-            <h2>{questions[currentIndex].text}</h2>
-        </div>
-        <Answer shuffledQuestions={shuffledQuestions} currentIndex={currentIndex} key={questions[currentIndex].text} onHandleAnswer={handleAnswer} />
+        
+        <Question shuffledQuestions={shuffledQuestions} currentIndex={currentIndex} key={questions[currentIndex].text} onHandleAnswer={handleAnswer} />
     </div>
 }

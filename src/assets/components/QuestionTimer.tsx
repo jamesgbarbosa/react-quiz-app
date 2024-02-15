@@ -20,7 +20,7 @@ export default function QuestionTimer({ state, timeout, onTimeout }) {
     }, [timeout, onTimeout])
 
     return <>
-        <progress className={`${state == 'default' ? 'default' : 'answered-progress'}`} max={timeout} value={timeLeft}>
+        <progress className={`${state}`} max={timeout} value={timeLeft}>
         </progress>
     </>
 }

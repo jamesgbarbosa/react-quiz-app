@@ -131,6 +131,25 @@ progress[value].answered-progress {
   background: var(--background);
 }
 
+progress[value].answered-loading {
+  --w: 200px;
+  /* the width*/
+  --color:
+    linear-gradient(#fff8, #fff0),
+    repeating-linear-gradient(135deg, #0003 0 10px, #0000 0 20px),
+    orange;
+  --background: lightgrey;
+  /* the background color */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border: none;
+  width: var(--w);
+  margin: 0 10px;
+  border-radius: 10em;
+  background: var(--background);
+}
+
 progress[value].default {
   --w: 200px;
   /* the width*/
