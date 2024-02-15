@@ -3,7 +3,7 @@ import questions from "../../questions.js";
 import QuestionTimer from "./QuestionTimer.js";
 import AnswerOptions from "./AnswerOptions.js";
 
-const TIMER = 5000;
+const TIMER = 20000;
 
 export default function Question({ onHandleAnswer, currentIndex, shuffledQuestions }) {
     const [selectedAnswer, setSelectedAnswer] = useState({ answer: null, state: '' })
@@ -20,7 +20,6 @@ export default function Question({ onHandleAnswer, currentIndex, shuffledQuestio
     }
     
     function handleTimeout() {
-        // setSelectedAnswer({answer: null, state: ''})
         onHandleAnswer(selectedAnswer)
     }
 
@@ -34,6 +33,8 @@ export default function Question({ onHandleAnswer, currentIndex, shuffledQuestio
     }
 
     return <div id="answers">
+        
+        <h4>Question {currentIndex+1} out of {questions.length} </h4>
         <div className="flex-center">
             <QuestionTimer key={currentIndex} state={timerState} timeout={timer} onTimeout={handleTimeout} />
         </div>

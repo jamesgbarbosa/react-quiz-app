@@ -207,7 +207,7 @@ label {
   /* max-width: 40rem; */
   margin: 2rem auto;
   padding: 2rem;
-  background: linear-gradient(180deg, #a17eda 0%, #895fc4 100%);
+  background: linear-gradient(180deg, #e3e1e6 0%, #895fc4 100%);
   color: #191321;
   border-radius: 8px;
   box-shadow: 1px 1px 8px 1px rgba(0, 0, 0, 0.6);
@@ -242,7 +242,7 @@ label {
   justify-content: center;
   align-items: center;
   background: #2c203d;
-  color: #d8cde8;
+  color: #ddd8e5;
   width: 2rem;
   height: 2rem;
   border-radius: 50%;
@@ -276,6 +276,8 @@ label {
 
 #summary-stats {
   display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
   gap: 3rem;
   width: 60%;
   margin: 2rem auto;
@@ -293,7 +295,9 @@ label {
 #summary-stats .number {
   font-family: 'Roboto Condensed', sans-serif;
   font-size: 3rem;
-  color: #594276;
+  /* text-shadow: #251e2f; */
+  font-weight: bold;
+  /* color: #594276; */
 }
 
 #summary-stats .text {
@@ -304,6 +308,26 @@ label {
   margin-top: -0.7rem;
   margin-left: 0.2rem;
   letter-spacing: 0.1rem;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  /* border: 1px solid red; */
+  padding: 0.2rem;
+  /* background-color: white; */
+}
+
+.green {
+  color: green;
+}
+
+.red {
+  color: red;
+}
+
+.orange {
+  color: orange;
 }
 
 @keyframes slide-in-from-bottom {

@@ -12,18 +12,18 @@ export default function Summary({ answers }) {
     return <div id="summary">
         <h2>Summary</h2>
         <div id="summary-stats">
-            <p>
-                <span className="number">{((skipped / 7) * 100).toFixed(2)}%</span>
+            <div className="stat">
+                <span className="orange number">{((skipped / 7) * 100).toFixed(0)}%</span>
                 <span className="text">Skipped</span>
-            </p>
-            <p>
-                <span className="number">{((correctAnswers / 7) * 100).toFixed(2)}%</span>
+            </div>
+            <div className="stat">
+                <span className="green number">{((correctAnswers / 7) * 100).toFixed(0)}%</span>
                 <span className="text">Correct</span>
-            </p>
-            <p>
-                <span className="number">{((wrongAnswers / 7) * 100).toFixed(2)}%</span>
+            </div>
+            <div className="stat">
+                <span className="red number">{((wrongAnswers / 7) * 100).toFixed(0)}%</span>
                 <span className="text">Wrong</span>
-            </p>
+            </div>
         </div>
         <ol>
             {questions.map((it, index) => <li key={index}>
