@@ -1,7 +1,6 @@
 import { useState } from "react";
-import questions from "../../questions.js"
 
-export default function Summary({ answers }) {
+export default function Summary({ answers, questions }) {
     const [computedScore, setComputedScore] = useState(0);
     let correctAnswers = answers.filter(it => it.state == 'correct').length;
     let wrongAnswers = answers.filter(it => it.state == 'wrong').length;

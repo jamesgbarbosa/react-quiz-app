@@ -1,26 +1,38 @@
-import { useCallback, useState } from "react"
-import questions from "../../questions.js"
-import Answer from "./AnswerOptions.js";
+import { useCallback, useEffect, useState } from "react"
 import Summary from "./Summary.js";
 import Question from "./Question.js";
 
 export default function Quiz() {
     const [answers, setAnswers] = useState([])
     let currentIndex = answers.length;
-    let shuffledQuestions = [];
+    let [isLoading, setIsLoading] = useState(true)
+    let [questions, setQuestions] = useState([])
+    let [isError, setIsError] = useState(false);
+
+    useEffect(() => {
+        setIsLoading(true);
+        fetch('http://localhost:3000/questions').then((res) => {
+            return res.json()
+        }).then((it) => {
+            setQuestions(() => it.questions)
+        }).catch((err) => {
+            setIsError(true);
+        }).finally(() => {
+            setIsLoading(() => false);
+        })
+    }, [])
 
     const handleAnswer = useCallback(function handleAnswer(it) {
         setAnswers(prev => [...prev, it])
-    }, [])
+    }, [questions])
 
-    if (currentIndex == questions.length) {
-        return <Summary answers={answers} />
+    if (!isError && !isLoading && (currentIndex == questions.length)) {
+        return <Summary questions={questions} answers={answers} />
     } else {
-        shuffledQuestions = [...questions[currentIndex].answers].sort(() => .5 - Math.random());
+
     }
 
     return <div id="question-overview question">
-        
-        <Question shuffledQuestions={shuffledQuestions} currentIndex={currentIndex} key={questions[currentIndex].text} onHandleAnswer={handleAnswer} />
+        {isLoading ? "Fetching quiz..." : isError ? "Error Occured" : <Question questions={questions} currentIndex={currentIndex} key={questions[currentIndex]?.text} onHandleAnswer={handleAnswer} />}
     </div>
 }

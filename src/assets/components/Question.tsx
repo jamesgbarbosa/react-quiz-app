@@ -1,13 +1,17 @@
-import { useState } from "react";
-import questions from "../../questions.js";
+import { useRef, useState } from "react";
 import QuestionTimer from "./QuestionTimer.js";
 import AnswerOptions from "./AnswerOptions.js";
 
 const TIMER = 20000;
 
-export default function Question({ onHandleAnswer, currentIndex, shuffledQuestions }) {
+export default function Question({ onHandleAnswer, currentIndex, questions }) {
     const [selectedAnswer, setSelectedAnswer] = useState({ answer: null, state: '' })
     const [timer, setTimer] = useState(TIMER)
+    const shuffledQuestions = useRef();
+
+    if (!shuffledQuestions.current) {
+        shuffledQuestions.current = [...questions[currentIndex].answers].sort(() => .5 - Math.random());
+    }
 
     function onSelectAnswer(it) {
         setTimer(()=> 3000)
@@ -41,6 +45,6 @@ export default function Question({ onHandleAnswer, currentIndex, shuffledQuestio
         <div className="flex-center">
             <h2>{questions[currentIndex].text}</h2>
         </div>
-        <AnswerOptions onDelay={addDelay} shuffledQuestions={shuffledQuestions} currentIndex={currentIndex} onHandleAnswer={onSelectAnswer}></AnswerOptions>
+        <AnswerOptions onDelay={addDelay} shuffledQuestions={shuffledQuestions.current} currentIndex={currentIndex} onHandleAnswer={onSelectAnswer} questions={questions}></AnswerOptions>
     </div>
 }

@@ -1,7 +1,6 @@
 import { useState } from "react";
-import questions from "../../questions.js";
 
-export default function AnswerOptions({ onHandleAnswer, onDelay, currentIndex, shuffledQuestions }) {
+export default function AnswerOptions({ onHandleAnswer, onDelay, currentIndex, shuffledQuestions, questions }) {
     const [selectedAnswer, setSelectedAnswer] = useState({ answer: null, state: '' })
 
     function onSelectAnswer(it) {
