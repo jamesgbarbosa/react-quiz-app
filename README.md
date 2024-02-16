@@ -1,3 +1,9 @@
+React Quiz!
+Quiz App about React made in React!
+
+![image](https://github.com/jamesgbarbosa/react-quiz-app/assets/2775369/3714644e-fc0a-4f76-8ade-f3244728bc97)
+
+
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
